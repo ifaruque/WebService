@@ -126,3 +126,66 @@ http://localhost:8080/WebService/calculatorWS?wsdl
 ![Image of Yaktocat](images/1.png)
 
 Yes.  web service is ready.We can use Now
+
+### Usage of own server ###
+
+create CalculatorClient.java
+
+```java
+package com.javaaround.client;
+
+import java.net.URL;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
+import com.javaaround.webservice.CalculatorService;
+
+public class CalculatorClient{
+
+	public static void main(String[] args) throws Exception {
+
+		URL url = new URL("http://localhost:8282/WebService/calculatorWS?wsdl");
+
+        //1st argument service URI, refer to wsdl document above
+	    //2nd argument is service name, refer to wsdl document above
+        QName qname = new QName("http://webservice.javaaround.com/", "CalculatorService");
+
+        Service service = Service.create(url, qname);
+
+        CalculatorService calculatorService = service.getPort(CalculatorService.class);
+
+        System.out.println("sum of 2 and 5 are : " + calculatorService.add(2,5));
+
+    }
+
+}
+```
+
+`QName qname = new QName(targetNamespace, name);` that is marked above image
+
+add plugin pom.xml
+
+```xml
+<plugin>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>exec-maven-plugin</artifactId>
+  <version>1.4.0</version>
+  <executions>
+    <execution>
+      <id>my-execution</id>
+      <!-- if skip phase: none -->
+      <phase>package</phase>
+      <goals>
+        <goal>java</goal>
+      </goals>
+    </execution>
+  </executions>
+  <configuration>
+    <mainClass>com.javaaround.client.CalculatorClient</mainClass>
+    <!--<classpathScope>main</classpathScope> defualt-->
+     <arguments>  
+       <argument>arg0</argument>  
+       <argument>arg1</argument>  
+     </arguments>  
+  </configuration>
+</plugin>
+```xml
