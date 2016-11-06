@@ -23,11 +23,11 @@ A Web service is a service offered by an electronic device to another electronic
  UDDI(Universal Description, Discovery, and Integration.) is an XML-based standard for describing, publishing, and finding web services
 
 ### How to start ###
-  Java design `jax-ws` api to work on soap based web service
+  
 
  1. create java maven project <br/>
 	mvn archetype:generate -DgroupId=com.javaaround -DartifactId=WebService -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-2. Add dependency at pom.xml
+2. Java design `jax-ws` api to work on soap based web service so add dependency at pom.xml
 	```xml
 	 <dependency>
         <groupId>com.sun.xml.ws</groupId>
