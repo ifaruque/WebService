@@ -201,6 +201,7 @@ mvn archetype:generate -DgroupId=com.javaaround.webservice.clientApp -DartifactI
 2.  use the command under src/main/java directory `wsimport -keep -p com.javaaround.webservice.clientApp  http://localhost:8282/WebService/calculatorWS?wsdl` 
 
 this will generate App.java , AddResponse.java , Calculatore.java etc
+
 3. Update App.java
 ```java
 package com.javaaround.webservice.clientApp;
