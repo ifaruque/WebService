@@ -35,3 +35,86 @@ A Web service is a service offered by an electronic device to another electronic
         <version>2.2.10</version>
      </dependency>
 	```
+3. create CalculatorService.java
+
+```java
+package com.javaaround.webservice;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+//Service Endpoint Interface
+@WebService
+public interface CalculatorService{
+
+	@WebMethod 
+	public int add(int num1 , int num2);
+
+}
+```	
+create Calculator.java
+
+```java
+package com.javaaround.webservice;
+
+import com.javaaround.webservice.CalculatorService;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+//Service Endpoint Interface
+@WebService
+public class Calculator implements CalculatorService{
+
+	@Override
+	public int add(int num1 , int num2){
+		return num1 + num2;
+	}
+
+}
+```
+
+4. update web.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_0.xsd"
+    id="WebApp_ID" version="3.0">
+    <display-name>JAXWS-Tomcat</display-name>
+ 
+    <listener>
+        <listener-class>
+            com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
+    </listener>
+     
+    <servlet>
+        <servlet-name>JAXWSServlet</servlet-name>
+        <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JAXWSServlet</servlet-name>
+        <url-pattern>/calculatorWS</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+     
+</web-app>
+```
+create sun-jaxws.xml under `WEB-INF`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
+  <endpoint
+     name="calculatorWS"
+     implementation="com.javaaround.webservice.Calculator"
+     url-pattern="/calculatorWS"/>
+</endpoints> 
+```
+
+5. create war file by following command
+
+`mvn clean package`
