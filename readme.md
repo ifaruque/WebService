@@ -118,3 +118,7 @@ create sun-jaxws.xml under `WEB-INF`
 5. create war file by following command
 
 `mvn clean package`
+deploy WebService.war file on Tomcat(container)<br>
+
+Browse wsdl file <br>
+(http://localhost:8080/WebService/calculatorWS?wsdl)
