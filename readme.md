@@ -121,4 +121,4 @@ create sun-jaxws.xml under `WEB-INF`
 deploy WebService.war file on Tomcat(container)<br>
 
 Browse wsdl file <br>
-[browse](http://localhost:8080/WebService/calculatorWS?wsdl)
+http://localhost:8080/WebService/calculatorWS?wsdl
