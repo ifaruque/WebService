@@ -24,10 +24,9 @@ A Web service is a service offered by an electronic device to another electronic
 
 ### How to start ###
   
-
- 1. create java maven project <br/>
+1. create java maven project <br/>
 	mvn archetype:generate -DgroupId=com.javaaround -DartifactId=WebService -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-2. Java design `jax-ws` api to work on soap based web service so add dependency at pom.xml
+ Java design `jax-ws` api to work on soap based web service so add dependency at pom.xml
 	```xml
 	 <dependency>
         <groupId>com.sun.xml.ws</groupId>
@@ -62,7 +61,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 //Service Endpoint Interface
-@WebService(endpointInterface = "com.javaaround.webservice.CalculatorService")
+@WebService(endpointInterface = "com.javaaround.webservice.CalculatorService",serviceName="calculatorService")
 public class Calculator implements CalculatorService{
 
 	@Override
@@ -193,3 +192,32 @@ add plugin pom.xml
 Run `mvn clean package` to see output
 
 ### Usage of outside from server ###
+`wsimport` is used generate java code  based on wsdl file.By the help of java code we can use web service
+it is located on $JAVA_HOME\bin\wsimport
+
+1. create desktop App java
+mvn archetype:generate -DgroupId=com.javaaround.webservice.clientApp -DartifactId=WSclientApp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+2.  use the command under src/main/java directory `wsimport -keep -p com.javaaround.webservice.clientApp  http://localhost:8282/WebService/calculatorWS?wsdl` 
+
+this will generate App.java , AddResponse.java , Calculatore.java etc
+3. Update App.java
+```java
+package com.javaaround.webservice.clientApp;
+
+/**
+ * Hello world!
+ *
+ */
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+        CalculatorService_Service service = new CalculatorService_Service();
+    CalculatorService calculatorService = service.getCalculatorPort();
+        System.out.println("sum of 2 and 5 are : " + calculatorService.add(2,5));
+    }
+}
+
+```

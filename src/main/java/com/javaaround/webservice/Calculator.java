@@ -5,7 +5,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 //Service Endpoint Interface
-@WebService(endpointInterface = "com.javaaround.webservice.CalculatorService")
+@WebService(endpointInterface = "com.javaaround.webservice.CalculatorService",serviceName="calculatorService")
 public class Calculator implements CalculatorService{
 
 	@Override
