@@ -188,4 +188,8 @@ add plugin pom.xml
      </arguments>  
   </configuration>
 </plugin>
-```xml
+```
+
+Run `mvn clean package` to see output
+
+### Usage of outside from server ###
