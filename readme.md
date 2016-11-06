@@ -1,3 +1,8 @@
 ### Web Service ###
 
-A web service is any piece of software that available over the internet and uses a standardized XML messaging system.It can be used any operating system or programming language Independently
+A Web service is a service offered by an electronic device to another electronic device, communicating with each other via the Internet.It can be used any operating system or programming language Independently
+
+### Web Service Design Way ###
+
+1. SOAP Based Way
+2. REST Way
