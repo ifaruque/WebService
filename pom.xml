@@ -22,5 +22,30 @@
   </dependencies>
   <build>
     <finalName>WebService</finalName>
+    <plugins>
+      <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.4.0</version>
+          <executions>
+            <execution>
+              <id>my-execution</id>
+              <!-- if skip phase: none -->
+              <phase>package</phase>
+              <goals>
+                <goal>java</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <mainClass>com.javaaround.client.CalculatorClient</mainClass>
+            <!--<classpathScope>main</classpathScope> defualt-->
+             <arguments>  
+               <argument>arg0</argument>  
+               <argument>arg1</argument>  
+             </arguments>  
+          </configuration>
+        </plugin>
+    </plugins>
   </build>
 </project>

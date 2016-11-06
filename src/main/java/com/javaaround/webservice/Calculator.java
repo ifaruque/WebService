@@ -1,11 +1,11 @@
 package com.javaaround.webservice;
 
-import com.javaaround.webservice.CalculatorService;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 //Service Endpoint Interface
-@WebService
+@WebService(endpointInterface = "com.javaaround.webservice.CalculatorService")
 public class Calculator implements CalculatorService{
 
 	@Override

@@ -62,7 +62,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 //Service Endpoint Interface
-@WebService
+@WebService(endpointInterface = "com.javaaround.webservice.CalculatorService")
 public class Calculator implements CalculatorService{
 
 	@Override
@@ -120,5 +120,9 @@ create sun-jaxws.xml under `WEB-INF`
 `mvn clean package`
 deploy WebService.war file on Tomcat(container)<br>
 
-Browse wsdl file <br>
+### How to get WSDL File ###
 http://localhost:8080/WebService/calculatorWS?wsdl
+
+![Image of Yaktocat](images/1.png)
+
+Yes.  web service is ready.We can use Now
