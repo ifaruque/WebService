@@ -264,7 +264,7 @@ In REST,a resource is accessed by a URI .as  a result REST is commonly(widly) us
 
 ### URI Format ###
 
-<protocol>://<service-name>/<ResourceType>/<ResourceID>
+`<protocol>://<service-name>/<ResourceType>/<ResourceID>`
 
 1. Use Plural Noun
 2. Avoid using spaces
