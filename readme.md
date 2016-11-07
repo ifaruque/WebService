@@ -263,8 +263,8 @@ In REST,a resource is accessed by a URI .as  a result REST is commonly(widly) us
 5. OPTIONS - Used to get the supported operations on a resource
 
 ### URI Format ###
+
 <protocol>://<service-name>/<ResourceType>/<ResourceID>
-example
 
 1. Use Plural Noun
 2. Avoid using spaces
