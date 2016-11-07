@@ -250,3 +250,27 @@ public class App
 }
 
 ```
+
+### REST Web Service ###
+REST(REpresentational State Transfer)ful Web Services are Architecture style where every content is a resource and can be represented many format(xml,json,html,pdf).<br/>
+In REST,a resource is accessed by a URI .as  a result REST is commonly(widly) used to create APIs for web based applications.
+
+### HTTP Methods ###
+1. GET - Provides a read only access to a resource.
+2. PUT - Used to create a new resource.
+3. DELETE - Used to remove a resource.
+4. POST - Used to update a existing resource or create a new resource.
+5. OPTIONS - Used to get the supported operations on a resource
+
+### URI Format ###
+<protocol>://<service-name>/<ResourceType>/<ResourceID>
+example
+
+1. Use Plural Noun
+2. Avoid using spaces
+3. use lowercase letters
+
+poor uri : <br>
+http://localhost:8080/UserManagement/rest/UserService/getUser/1<br>
+good uri<br>
+http://localhost:8080/UserManagement/rest/UserService/users/1
