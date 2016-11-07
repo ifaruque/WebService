@@ -26,14 +26,8 @@ A Web service is a service offered by an electronic device to another electronic
   
 1. create java maven project <br/>
 	mvn archetype:generate -DgroupId=com.javaaround -DartifactId=WebService -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
- Java design `jax-ws` api to work on soap based web service so add dependency at pom.xml
-	```xml
-	 <dependency>
-        <groupId>com.sun.xml.ws</groupId>
-        <artifactId>jaxws-rt</artifactId>
-        <version>2.2.10</version>
-     </dependency>
-	```
+ Java design `jax-ws` api to work on soap based web service 
+	
 3. create CalculatorService.java
 
 ```java
@@ -71,6 +65,40 @@ public class Calculator implements CalculatorService{
 
 }
 ```
+### Publish web service way ###
+
+1. Programming way
+2. deploy existing servlet container(tomcat)
+
+### Programming way ###
+
+create CalculatorPublisher.java
+```java
+package com.javaaround.client;
+
+import javax.xml.ws.Endpoint;  
+import com.javaaround.webservice.Calculator;
+//Endpoint publisher  
+public class CalculatorPublisher{  
+    public static void main(String[] args) {  
+       Endpoint.publish("http://localhost:7779/ws/calculator", new Calculator());  
+    }  
+}  
+```
+### How to get WSDL File ###
+http://localhost:7779/ws/calculator
+
+### deploy into tomcat ###
+
+add dependency at pom.xml
+
+```xml
+   <dependency>
+        <groupId>com.sun.xml.ws</groupId>
+        <artifactId>jaxws-rt</artifactId>
+        <version>2.2.10</version>
+     </dependency>
+  ```
 
 4. update web.xml
 
@@ -142,7 +170,7 @@ public class CalculatorClient{
 
 	public static void main(String[] args) throws Exception {
 
-		URL url = new URL("http://localhost:8282/WebService/calculatorWS?wsdl");
+		URL url = new URL("http://localhost:8080/WebService/calculatorWS?wsdl");
 
         //1st argument service URI, refer to wsdl document above
 	    //2nd argument is service name, refer to wsdl document above
@@ -198,7 +226,7 @@ it is located on $JAVA_HOME\bin\wsimport
 1. create desktop App java
 mvn archetype:generate -DgroupId=com.javaaround.webservice.clientApp -DartifactId=WSclientApp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
-2.  use the command under src/main/java directory `wsimport -keep -p com.javaaround.webservice.clientApp  http://localhost:8282/WebService/calculatorWS?wsdl` 
+2.  use the command under src/main/java directory `wsimport -keep -p com.javaaround.webservice.clientApp  http://localhost:8080/WebService/calculatorWS?wsdl` 
 
 this will generate App.java , AddResponse.java , Calculatore.java etc
 
