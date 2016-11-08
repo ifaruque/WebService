@@ -27,7 +27,7 @@ public class CalculatorClient{
 		WebResource webResource = client
 		   .resource("http://localhost:8282/WebService/rest/calculatorRest/2/3");
 
-		ClientResponse response = webResource.accept("text/plain")
+		ClientResponse response = webResource.accept("application/json")
                    .get(ClientResponse.class);
         System.out.println("sum of 2 and 3 is : " + response.getEntity(String.class));
 

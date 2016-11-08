@@ -364,6 +364,12 @@ public class CalculatorRestService {
     return "<html> " + "<title>" + "Hello Jersey" + "</title>"  
         + "<body><h1>" + "Sum : " +(num1 + num2) + "</h1></body>" + "</html> ";
   }
+  @GET
+  @Produces(MediaType.APPLICATION_JSON) 
+  @Path("/{num1}/{num2}")
+  public String add4(@PathParam("num1") Integer num1,@PathParam("num2") Integer num2) {
+    return String.valueOf(num1 + num2);
+  }
 
 }
 ```
