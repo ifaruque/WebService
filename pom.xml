@@ -49,7 +49,7 @@
             </execution>
           </executions>
           <configuration>
-            <mainClass>com.javaaround.client.CalculatorPublisher</mainClass>
+            <mainClass>com.javaaround.client.CalculatorClient</mainClass>
             <!--<classpathScope>main</classpathScope> defualt-->
              <arguments>  
                <argument>arg0</argument>  

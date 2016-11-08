@@ -367,3 +367,12 @@ public class CalculatorRestService {
 
 }
 ```
+browse <br/>
+http://localhost:8080/WebService/rest/calculatorRest/2/3<br/>
+
+or curl -i http://localhost:8282/WebService/rest/calculatorRest/2/3<br/>
+
+Note -i for display response header
+
+### Access above service using java ###
+
