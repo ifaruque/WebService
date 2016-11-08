@@ -219,7 +219,7 @@ add plugin pom.xml
 
 Run `mvn clean package` to see output
 
-### Usage of outside from server ###
+### Usage of desktop App  ###
 `wsimport` is used generate java code  based on wsdl file.By the help of java code we can use web service
 it is located on $JAVA_HOME\bin\wsimport
 
@@ -250,10 +250,17 @@ public class App
 }
 
 ```
+### Usage of Jave web App  ###
+
+```java
+@WebServiceRef(wsdlLocation = 
+      "http://localhost:8080/WebService/calculatorWS?wsdl")
+private HelloService service;
+```
 
 ### REST Web Service ###
 REST(REpresentational State Transfer)ful Web Services are Architecture style where every content is a resource and can be represented many format(xml,json,html,pdf).<br/>
-In REST,a resource is accessed by a URI .as  a result REST is commonly(widly) used to create APIs for web based applications.
+In REST,a resource is accessed directly by a URI .as  a result REST is commonly(widly) used to create APIs for web based applications.
 
 ### HTTP Methods ###
 1. GET - Provides a read only access to a resource.
@@ -274,3 +281,12 @@ poor uri : <br>
 http://localhost:8080/UserManagement/rest/UserService/getUser/1<br>
 good uri<br>
 http://localhost:8080/UserManagement/rest/UserService/users/1
+
+Java design `jax-rs` api to work on REST based web service 
+
+### implementation JAX-RS ###
+There are following implementation of JAX-RS API for work easily
+
+1. Jersey
+2. RESTEasy
+3. Apache CFX

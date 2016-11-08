@@ -19,6 +19,12 @@
         <artifactId>jaxws-rt</artifactId>
         <version>2.2.10</version>
     </dependency>
+
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.0.1</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>WebService</finalName>
@@ -31,7 +37,7 @@
             <execution>
               <id>my-execution</id>
               <!-- if skip phase: none -->
-              <phase>package</phase>
+              <phase>none</phase>
               <goals>
                 <goal>java</goal>
               </goals>
