@@ -14,8 +14,8 @@ import javax.xml.ws.Service;
 
 @WebServlet(name="HelloServlet", urlPatterns={"/HelloServlet"})
 public class CalClientServlet extends HttpServlet {
-    @WebServiceRef(wsdlLocation = "http://localhost:8282/WebService/calculatorWS?wsdl")
-    private CalculatorService service;
+    //@WebServiceRef(wsdlLocation = "http://localhost:8282/WebService/calculatorWS?wsdl")
+    //private CalculatorService service;
    
     
     protected void doGet(HttpServletRequest request, 
@@ -23,10 +23,10 @@ public class CalClientServlet extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        Calculator calculatorService = service.getCalculatorPort();
+        //Calculator calculatorService = service.getCalculatorPort();
         try {
             
-           out.print(calculatorService.add(2,5));
+           out.print("calculatorService.add(2,5)");
             
         } finally { 
             out.close();
