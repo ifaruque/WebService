@@ -385,7 +385,8 @@ Url | Annotation
 ------------ | -------------
 /rest/{num1} | @PathParam("num1") Integer num1
 /rest?num1=5 | @QueryParam("num1") Integer num1
-/rest;num1=5;num2=5 | @@MatrixParam("num1") Integer num1
+/rest;num1=5;num2=5 | @MatrixParam("num1") Integer num1
+`<input type="text" name="name" />` | @FormParam("name") String name
 
 
 browse <br/>
