@@ -332,7 +332,7 @@ add servlet at web.xml
   </servlet-mapping>
 ```
 
-create CalculatorRestService.java
+create CalculatorResource.java
 
 ```java
 package com.javaaround.webservice;
@@ -345,7 +345,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;  
 
 @Path("/calculatorRest")
-public class CalculatorRestService {
+public class CalculatorResource {
 
   // This method is called if TEXT_PLAIN is requested
   //.it is defualt handler if not browser  request 
@@ -381,6 +381,13 @@ public class CalculatorRestService {
 
 }
 ```
+Url | Annotation
+------------ | -------------
+/rest/{num1} | @PathParam("num1") Integer num1
+/rest?num1=5 | @QueryParam("num1") Integer num1
+/rest;num1=5;num2=5 | @@MatrixParam("num1") Integer num1
+
+
 browse <br/>
 http://localhost:8080/WebService/rest/calculatorRest/2/3<br/>
 
