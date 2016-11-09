@@ -21,6 +21,14 @@ A Web service is a service offered by an electronic device to another electronic
 ### UDDI ###
 
  UDDI(Universal Description, Discovery, and Integration.) is an XML-based standard for describing, publishing, and finding web services
+ 1. Service provider registers WSDL to UDDI.
+ 2. Client searches for service in UDDI.
+ 3. UDDI returns all service providers offering that service.
+ 4. Client chooses service provider
+ 5. UDDI returns WSDL of chosen service provider.
+ 6. Using WSDL of service provider,client accesses web service
+
+Read more at http://www.java2blog.com/2013/03/soap-web-service-tutorial.html#mjQ2BuYS7fGbWSqC.99
 
 ### How to start ###
   
@@ -431,4 +439,9 @@ public class CalculatorClient{
 
 }
 ```
+### Web service Testing Tool ###
+1. curl
+2. RestClientUI
+3. SOUPUI
+4. POSTMAN(google chrome extenstion)
 
