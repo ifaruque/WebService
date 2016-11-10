@@ -453,7 +453,15 @@ public class CalculatorClient{
 }
 ```
 ### CRUD Operation using REST ###
+add dependency `jackson` for automatically generate json and xml otherwise we need to create manaully!!!.
 
+```xml
+<dependency>
+    <groupId>org.codehaus.jackson</groupId>
+    <artifactId>jackson-mapper-asl</artifactId>
+    <version>1.9.13</version>
+</dependency>
+``
 1. create model Employee.java
 
 ```java
