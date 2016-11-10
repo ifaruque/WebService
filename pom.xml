@@ -36,9 +36,9 @@
       <version>1.8</version>
     </dependency>
     <dependency>
-        <groupId>org.codehaus.jackson</groupId>
-        <artifactId>jackson-mapper-asl</artifactId>
-        <version>1.9.13</version>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-json</artifactId>
+      <version>1.8</version>
     </dependency>
   </dependencies>
   <build>

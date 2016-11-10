@@ -456,12 +456,21 @@ public class CalculatorClient{
 add dependency `jackson` for automatically generate json and xml otherwise we need to create manaully!!!.
 
 ```xml
-<dependency>
-    <groupId>org.codehaus.jackson</groupId>
-    <artifactId>jackson-mapper-asl</artifactId>
-    <version>1.9.13</version>
+<groupId>com.sun.jersey</groupId>
+  <artifactId>jersey-json</artifactId>
+  <version>1.8</version>
 </dependency>
 ```
+
+add param at web.xml
+
+```xml
+<init-param>
+    <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+    <param-value>true</param-value>
+</init-param>
+```
+
 1. create model Employee.java
 
 ```java
@@ -676,7 +685,11 @@ public class EmployeeResource {
     // /contextPath/servletPath/employees
     @POST
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Employee addEmployee(Employee emp) {
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Employee addEmployee(@FormParam("id") Integer id,
+            @FormParam("name") String name,
+            @FormParam("salary") Double salary) {
+        Employee emp = new Employee(id, name, salary);    
         return employeeService.addEmployee(emp);
     }
  
@@ -702,11 +715,15 @@ public class EmployeeResource {
 1. Read 
 using browser `http://localhost:8282/WebService/rest/employees`
 <br>
-useing curl `curl -i -H "Accept: application/xml" http://localhost:8282/WebService/rest/employees`
+using curl xml format `curl -i -H "Accept: application/xml" http://localhost:8282/WebService/rest/employees`
 
-2. Delete
+using curl json format `curl -i -H "Accept: application/json" http://localhost:8282/WebService/rest/employees`
 
-`curl -X DELETE http://localhost:8282/WebService/rest/employees/3`
+2. Add
+`curl --data "id=4&name=subir&salary=3" -H "Accept: application/xml" -X POST http://localhost:8282/WebService/rest/employees`
+
+3. Delete
+`curl -X DELETE http://localhost:8282/WebService/rest/employees/4`
 `curl -i -H "Accept: application/xml" http://localhost:8282/WebService/rest/employees`
 
 

@@ -13,6 +13,8 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
  
 import com.javaaround.webservice.dao.EmployeeDAO;
 import com.javaaround.webservice.model.Employee;
@@ -57,7 +59,11 @@ public class EmployeeResource {
     // /contextPath/servletPath/employees
     @POST
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Employee addEmployee(Employee emp) {
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Employee addEmployee(@FormParam("id") Integer id,
+            @FormParam("name") String name,
+            @FormParam("salary") Double salary) {
+        Employee emp = new Employee(id, name, salary);    
         return employeeService.addEmployee(emp);
     }
  
