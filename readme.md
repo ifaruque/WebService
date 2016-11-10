@@ -713,17 +713,22 @@ public class EmployeeResource {
 
 ### Testing ###
 1. Read 
-using browser `http://localhost:8282/WebService/rest/employees`
-<br>
-using curl xml format `curl -i -H "Accept: application/xml" http://localhost:8282/WebService/rest/employees`
+   - using browser 
+      - `http://localhost:8282/WebService/rest/employees`
 
-using curl json format `curl -i -H "Accept: application/json" http://localhost:8282/WebService/rest/employees`
+  - using curl 
+      - xml format `curl -i -H "Accept: application/xml" http://localhost:8282/WebService/rest/employees`
 
-2. Add
+      - json format `curl -i -H "Accept: application/json" http://localhost:8282/WebService/rest/employees`
+
+2. Add Employee
+
 `curl --data "id=4&name=subir&salary=3" -H "Accept: application/xml" -X POST http://localhost:8282/WebService/rest/employees`
 
 3. Delete
+
 `curl -X DELETE http://localhost:8282/WebService/rest/employees/4`
+
 `curl -i -H "Accept: application/xml" http://localhost:8282/WebService/rest/employees`
 
 
