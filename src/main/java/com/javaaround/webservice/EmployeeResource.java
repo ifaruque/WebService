@@ -19,6 +19,7 @@ import javax.ws.rs.FormParam;
 import com.javaaround.webservice.dao.EmployeeDAO;
 import com.javaaround.webservice.model.Employee;
 import com.javaaround.webservice.service.EmployeeService;
+import java.net.URI;
  
 @Path("/employees")
 public class EmployeeResource {
@@ -60,18 +61,30 @@ public class EmployeeResource {
     @POST
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Employee addEmployee(@FormParam("id") Integer id,
+    public Response  addEmployee(@FormParam("id") Integer id,
             @FormParam("name") String name,
             @FormParam("salary") Double salary) {
         Employee emp = new Employee(id, name, salary);    
-        return employeeService.addEmployee(emp);
+        Employee emp2 = employeeService.addEmployee(emp);
+        try{
+            URI location = new URI(String.valueOf(uriInfo.getAbsolutePath()));
+            return Response.seeOther(location).build();
+        }catch(Exception e){
+
+        }
+       
+        return Response.status(200).entity("employee add failed").build();
     }
  
     // URI:
     // /contextPath/servletPath/employees
     @PUT
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Employee updateEmployee(Employee emp) {
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Employee updateEmployee(@FormParam("id") Integer id,
+            @FormParam("name") String name,
+            @FormParam("salary") Double salary) {
+        Employee emp = new Employee(id, name, salary); 
         return employeeService.updateEmployee(emp);
     }
  
