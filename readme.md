@@ -28,7 +28,6 @@ A Web service is a service offered by an electronic device to another electronic
  5. UDDI returns WSDL of chosen service provider.
  6. Using WSDL of service provider,client accesses web service
 
-Read more at http://www.java2blog.com/2013/03/soap-web-service-tutorial.html#mjQ2BuYS7fGbWSqC.99
 
 ### How to start ###
   
@@ -299,6 +298,12 @@ There are following implementation of JAX-RS API for work easily
 2. RESTEasy
 3. Apache CFX
 
+### Web service Testing Tool ###
+1. curl
+2. RestClientUI
+3. SOUPUI
+4. POSTMAN(google chrome extenstion)
+
 ### How to start with Jersey ###
 
 add dependency at pom.xml
@@ -447,9 +452,247 @@ public class CalculatorClient{
 
 }
 ```
-### Web service Testing Tool ###
-1. curl
-2. RestClientUI
-3. SOUPUI
-4. POSTMAN(google chrome extenstion)
+### CRUD Operation using REST ###
+
+1. create model Employee.java
+
+```java
+package com.javaaround.webservice.model;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+ 
+@XmlRootElement(name = "employee")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Employee {
+ 
+    private Integer id;
+    private String name;
+    private Double salary;
+ 
+    // This default constructor is required if there are other constructors.
+    public Employee() {
+ 
+    }
+ 
+    public Employee(Integer id, String name, Double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+ 
+    public Integer getId() {
+        return id;
+    }
+ 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+ 
+    public String getName() {
+        return name;
+    }
+ 
+    public void setName(String name) {
+        this.name = name;
+    }
+ 
+    public Double getSalary() {
+        return salary;
+    }
+ 
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+ 
+}
+```
+2. create dao EmployeeDAO.java 
+
+```java
+package com.javaaround.webservice.dao;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+ 
+import com.javaaround.webservice.model.Employee;
+ 
+public class EmployeeDAO {
+ 
+    private static final Map<Integer, Employee> empMap = new HashMap<Integer, Employee>();
+ 
+    static {
+        Employee emp1 = new Employee(1, "Shamim Miah", 1200.00);
+        Employee emp2 = new Employee(2, "Alamin", 13000.00);
+        Employee emp3 = new Employee(3, "Sohag", 25000.00);
+ 
+        empMap.put(emp1.getId(), emp1);
+        empMap.put(emp2.getId(), emp2);
+        empMap.put(emp3.getId(), emp3);
+    }
+ 
+ 
+    public static Employee getEmployee(Integer id) {
+        return empMap.get(id);
+    }
+ 
+    public static Employee addEmployee(Employee emp) {
+        empMap.put(emp.getId(), emp);
+        return emp;
+    }
+ 
+    public static Employee updateEmployee(Employee emp) {
+        empMap.put(emp.getId(), emp);
+        return emp;
+    }
+ 
+    public static void deleteEmployee(Integer id) {
+        empMap.remove(id);
+    }
+ 
+    public static List<Employee> getAllEmployees() {
+        Collection<Employee> c = empMap.values();
+        List<Employee> list = new ArrayList<Employee>();
+        list.addAll(c);
+        return list;
+    }
+   
+ 
+}
+```
+3. create EmployeeService.java 
+
+```java
+package com.javaaround.webservice.service;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+ 
+import com.javaaround.webservice.model.Employee;
+import com.javaaround.webservice.dao.EmployeeDAO;
+ 
+public class EmployeeService {
+ 
+    EmployeeDAO employeeDAO;
+
+    public EmployeeService() {
+       employeeDAO = new EmployeeDAO();
+       
+    }
+    public Employee getEmployee(Integer id) {
+        return employeeDAO.getEmployee(id);
+    }
+    public Employee addEmployee(Employee emp) {
+        employeeDAO.addEmployee(emp);
+        return emp;
+    }
+ 
+    public Employee updateEmployee(Employee emp) {
+        employeeDAO.updateEmployee(emp);
+        return emp;
+    }
+ 
+    public void deleteEmployee(Integer id) {
+         employeeDAO.deleteEmployee(id);
+    }
+ 
+    public List<Employee> getAllEmployees() {
+        return employeeDAO.getAllEmployees();
+    }
+  
+}
+```
+4. create EmployeeResource.java 
+
+```java
+package com.javaaround.webservice;
+import java.util.List;
+ 
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.Context;
+ 
+import com.javaaround.webservice.dao.EmployeeDAO;
+import com.javaaround.webservice.model.Employee;
+import com.javaaround.webservice.service.EmployeeService;
+ 
+@Path("/employees")
+public class EmployeeResource {
+
+    @Context
+    UriInfo uriInfo;
+    @Context
+    Request request;
+    EmployeeService employeeService = new EmployeeService();
+    // This default constructor is required if there are other constructors.
+    public EmployeeResource(){
+
+    }
+    public EmployeeResource(UriInfo uriInfo, Request request) {
+        this.uriInfo = uriInfo;
+        this.request = request;
+       
+    }
+    // URI:
+    // /contextPath/servletPath/employees
+    @GET
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public List<Employee> getEmployees_JSON() {
+        List<Employee> listOfCountries = employeeService.getAllEmployees();
+        return listOfCountries;
+    }
+    
+    // URI:
+    // /contextPath/servletPath/employees/{id}
+    @GET
+    @Path("/{id}")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Employee getEmployee(@PathParam("id") Integer id) {
+        return employeeService.getEmployee(id);
+    }
+ 
+    // URI:
+    // /contextPath/servletPath/employees
+    @POST
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Employee addEmployee(Employee emp) {
+        return employeeService.addEmployee(emp);
+    }
+ 
+    // URI:
+    // /contextPath/servletPath/employees
+    @PUT
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Employee updateEmployee(Employee emp) {
+        return employeeService.updateEmployee(emp);
+    }
+ 
+    @DELETE
+    @Path("/{id}")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public void deleteEmployee(@PathParam("id") Integer id) {
+        employeeService.deleteEmployee(id);
+    }
+ 
+}
+```
+
+### Testing ###
+using browser `http://localhost:8282/WebService/rest/employees`
+<br>
+useing curl `curl -i -H "Accept: application/xml" http://localhost:8282/WebService/rest/employees`
+
 

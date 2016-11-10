@@ -1,6 +1,10 @@
 F:\New folder\java\web service\WebService\src\main\java\com\javaaround\webservice\CalculatorService.java
+F:\New folder\java\web service\WebService\src\main\java\com\javaaround\webservice\service\EmployeeService.java
+F:\New folder\java\web service\WebService\src\main\java\com\javaaround\webservice\dao\EmployeeDAO.java
 F:\New folder\java\web service\WebService\src\main\java\com\javaaround\webservice\CalClientServlet.java
+F:\New folder\java\web service\WebService\src\main\java\com\javaaround\webservice\model\Employee.java
 F:\New folder\java\web service\WebService\src\main\java\com\javaaround\client\CalculatorClient.java
 F:\New folder\java\web service\WebService\src\main\java\com\javaaround\webservice\Calculator.java
 F:\New folder\java\web service\WebService\src\main\java\com\javaaround\webservice\CalculatorRestService.java
+F:\New folder\java\web service\WebService\src\main\java\com\javaaround\webservice\EmployeeResource.java
 F:\New folder\java\web service\WebService\src\main\java\com\javaaround\client\CalculatorPublisher.java

@@ -35,6 +35,11 @@
       <artifactId>jersey-client</artifactId>
       <version>1.8</version>
     </dependency>
+    <dependency>
+        <groupId>org.codehaus.jackson</groupId>
+        <artifactId>jackson-mapper-asl</artifactId>
+        <version>1.9.13</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>WebService</finalName>
@@ -47,7 +52,7 @@
             <execution>
               <id>my-execution</id>
               <!-- if skip phase: none -->
-              <phase>package</phase>
+              <phase>none</phase>
               <goals>
                 <goal>java</goal>
               </goals>
