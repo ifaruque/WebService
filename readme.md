@@ -712,7 +712,7 @@ public class EmployeeResource {
 ```
 
 ### Testing ###
-1. Read 
+1. Read Employee
    - using browser 
       - `http://localhost:8282/WebService/rest/employees`
 
@@ -723,12 +723,14 @@ public class EmployeeResource {
 
 2. Add Employee
 
-`curl --data "id=4&name=subir&salary=3" -H "Accept: application/xml" -X POST http://localhost:8282/WebService/rest/employees`
+  - `curl --data "id=4&name=subir&salary=3" -H "Accept: application/xml" -X POST http://localhost:8282/WebService/rest/employees`
 
-3. Delete
+3. Delete Employee
 
-`curl -X DELETE http://localhost:8282/WebService/rest/employees/4`
+  - `curl -X DELETE http://localhost:8282/WebService/rest/employees/4`
 
-`curl -i -H "Accept: application/xml" http://localhost:8282/WebService/rest/employees`
+  - `curl -i -H "Accept: application/xml" http://localhost:8282/WebService/rest/employees`
+
+4. Update Employee
 
 
