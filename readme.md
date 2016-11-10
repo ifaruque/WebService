@@ -699,8 +699,14 @@ public class EmployeeResource {
 ```
 
 ### Testing ###
+1. Read 
 using browser `http://localhost:8282/WebService/rest/employees`
 <br>
 useing curl `curl -i -H "Accept: application/xml" http://localhost:8282/WebService/rest/employees`
+
+2. Delete
+
+`curl -X DELETE http://localhost:8282/WebService/rest/employees/3`
+`curl -i -H "Accept: application/xml" http://localhost:8282/WebService/rest/employees`
 
 
