@@ -33,7 +33,7 @@ A Web service is a service offered by an electronic device to another electronic
   
 1. create java maven project <br/>
 	mvn archetype:generate -DgroupId=com.javaaround -DartifactId=WebService -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-  
+  <br/>
  Java design `jax-ws` api to work on soap based web service 
 	
 3. create CalculatorService.java
@@ -724,6 +724,14 @@ public class EmployeeResource {
 }
 ```
 
+you can use MultipleValueMap to create map of form data
+
+```java
+public Response  addEmployee(MultivaluedMap<String, String> formParams) {
+        Employee emp = new Employee(Integer.parseInt(formParams.get("id")), String.valueOf(formParams.get("name")), Double.parseInt(formParams.get("salary"))); 
+```
+
+```
 ### Testing ###
 1. Read Employee
    - using browser 

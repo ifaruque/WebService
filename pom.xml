@@ -81,12 +81,24 @@
 
           <useFile>false</useFile>
            <!-- <skipTests>true</skipTests> ignore all test executes -->
-          <skipTests>false</skipTests>
+          <skipTests>true</skipTests>
           <printSummary>true</printSummary>
                   <!--<showSuccess>false</showSuccess> --> 
                   <!--<outputDirectory>${basedir}/target/newsite</outputDirectory>-->
         </configuration>
       </plugin>
+       <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+                <url>http://localhost:8282/manager/text</url>
+                <server>tomcat</server>
+                <path>/${project.artifactId}</path>
+                <update>true</update><!-- automatically undeploy when deploying -->
+            </configuration>
+
+        </plugin>
     </plugins>
   </build>
 </project>
