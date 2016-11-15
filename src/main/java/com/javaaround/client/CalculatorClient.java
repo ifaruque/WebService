@@ -66,9 +66,9 @@ public class CalculatorClient{
   		//2nd way
   		MultivaluedMap formData = new MultivaluedMapImpl();
 		formData.add("id", "6");
-		formData.add("name", "2nd employee");
+		formData.add("name", "3nd employee");
 		form.add("salary",2555);
-		
+
 		ClientResponse response2 = service
 			.path("employees")
 			.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)

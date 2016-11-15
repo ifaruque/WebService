@@ -752,9 +752,9 @@ public class EmployeeResource {
 add dependency at pom.xml
 ```xml
 <dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>javax.servlet-api</artifactId>
-    <version>3.0.1</version>
+  <groupId>javax.ws.rs</groupId>
+  <artifactId>javax.ws.rs-api</artifactId>
+  <version>2.0</version>
 </dependency>
 ``` 
 update  CalculatorClient.java
@@ -774,7 +774,7 @@ import javax.ws.rs.core.MediaType;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import javax.ws.rs.core.UriBuilder;
-import javax.ws.rs.core.MultivaluedMapImpl;
+import import com.sun.jersey.core.util.MultivaluedMapImpl;
 import javax.ws.rs.core.MultivaluedMap;
 
 public class CalculatorClient{
