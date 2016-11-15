@@ -20,7 +20,6 @@ import com.javaaround.webservice.dao.EmployeeDAO;
 import com.javaaround.webservice.model.Employee;
 import com.javaaround.webservice.service.EmployeeService;
 import java.net.URI;
-import javax.ws.rs.core.MultivaluedMap;
  
 @Path("/employees")
 public class EmployeeResource {
@@ -61,9 +60,11 @@ public class EmployeeResource {
     // /contextPath/servletPath/employees
     @POST
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Consumes("application/x-www-form-urlencoded")
-    public Response  addEmployee(MultivaluedMap<String, String> formParams) {
-        Employee emp = new Employee(formParams.get("id"),formParams.get("name"), formParams.get("salary"));    
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response  addEmployee(@FormParam("id") Integer id,
+            @FormParam("name") String name,
+            @FormParam("salary") Double salaryMultivaluedMap<String, String> formParams) {
+        Employee emp = new Employee(formParams.get("id"), formParams.get("name"), formParams.get("sal"));    
         Employee emp2 = employeeService.addEmployee(emp);
         try{
             URI location = new URI(String.valueOf(uriInfo.getAbsolutePath()));

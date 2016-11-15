@@ -728,7 +728,9 @@ you can use MultipleValueMap to create map of form data
 
 ```java
 public Response  addEmployee(MultivaluedMap<String, String> formParams) {
-        Employee emp = new Employee(Integer.parseInt(formParams.get("id")), String.valueOf(formParams.get("name")), Double.parseInt(formParams.get("salary"))); 
+Employee emp = new Employee(Integer.parseInt(formParams.get("id")), 
+String.valueOf(formParams.get("name")), 
+Double.parseInt(formParams.get("salary"))); 
 ```
 
 ```
